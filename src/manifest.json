@@ -1,0 +1,12 @@
+{
+  "name": "My Pivotal Stories",
+  "version": "1.0",
+  "description": "Show my stories across projects",
+  "permissions": [
+    "https://*/"
+  ],  
+  "browser_action": {
+    "default_icon": "icon.png",
+    "popup": "popup.html"
+  }
+}

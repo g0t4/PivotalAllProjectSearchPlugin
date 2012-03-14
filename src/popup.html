@@ -1,0 +1,27 @@
+<script src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+<script src="lib/amplify.min.js"></script>
+<script src='lib/knockout-2.0.0.js'></script>
+<script src="lib/knockout.mapping-latest.js"></script>
+<script src="lib/linq.min.js"></script>
+<script src="lib/jquery.xml2json.js"></script>
+<script src="popup.js"></script>
+<html>
+	<body style="width: 500px;">
+		<div data-bind='foreach: projects'>
+			<ul>
+				<li data-bind="visible: stories().length > 0">
+					<span data-bind="text: name"></span>
+					<div data-bind='foreach: stories'>
+						<ul>
+							<li>
+								<a data-bind="attr: { href: url}" target="_blank">
+									<span data-bind="text: name"></span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
