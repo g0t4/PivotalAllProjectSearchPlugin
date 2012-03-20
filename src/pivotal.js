@@ -73,7 +73,7 @@ var pivotalApi = {
 			url: 'https://www.pivotaltracker.com/services/v3/projects/{projectId}/stories?filter={filter}',
 			cache: {
 				type: 'persist',
-				expires: 30000
+				expires: 5*60*1000
 			},
 			decoder: 'xmlToJsonDecoder'
 		});
