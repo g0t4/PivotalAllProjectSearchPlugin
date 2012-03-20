@@ -54,7 +54,9 @@ var pivotalApi = {
 
 		amplify.request({
 			resourceId: "projects",
-			success: success,
+			success: function(data){
+				success(data.project);
+			},
 			failure: failure
 		});
 	},
@@ -75,7 +77,14 @@ var pivotalApi = {
 		amplify.request({
 			resourceId: "stories",
 			data: storyParameters,
-			success: success,
+			success: function(data){
+				if(data.story === undefined){
+					success([]);
+					return;
+				}
+				var stories = data.story instanceof Array ? data.story : [data.story];
+				success(stories);
+			},
 			failure: failure
 		});
 	},

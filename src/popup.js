@@ -17,8 +17,8 @@ function userLoaded() {
 	pivotalApi.loadProjects(projectsLoaded);
 }
 
-function projectsLoaded(data) {
-	Enumerable.From(data.project).ForEach(loadProject);
+function projectsLoaded(projects) {
+	Enumerable.From(projects).ForEach(loadProject);
 }
 
 function loadProject(project) {
@@ -29,8 +29,8 @@ function loadProject(project) {
 }
 
 function storiesLoaded(project) {
-	return function(data) {
-		Enumerable.From(data.story).Select(function(s) {
+	return function(stories) {
+		Enumerable.From(stories).Select(function(s) {
 			return {
 				id: s.id,
 				url: s.url,
