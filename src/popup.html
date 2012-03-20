@@ -13,6 +13,8 @@
 	<body style="width: 550px;">
 		<img src="refresh.png" data-bind="click: refresh"/>
 		<input type="text" data-bind="value: filter"/>
+		<img src="search.png" data-bind="click: search"/>
+		<img src="refresh.png" data-bind="click: refreshSearch"/>
 		<div data-bind='foreach: projects'>
 			<ul>
 				<li data-bind="visible: stories().length > 0">

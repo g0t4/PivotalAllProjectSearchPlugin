@@ -71,6 +71,10 @@ var pivotalApi = {
 				"X-TrackerToken": pivotalApi.user.apiToken
 			},
 			url: 'https://www.pivotaltracker.com/services/v3/projects/{projectId}/stories?filter={filter}',
+			cache: {
+				type: 'persist',
+				expires: 30000
+			},
 			decoder: 'xmlToJsonDecoder'
 		});
 
@@ -109,8 +113,12 @@ var pivotalApi = {
 	clearProjects: function() {
 		pivotalApi.clearRequestCache('projects');
 	},
+	clearStories: function(){
+		pivotalApi.clearRequestCache('stories');
+	},
 	clearEverything: function() {
 		pivotalApi.clearUser();
 		pivotalApi.clearProjects();
+		pivotalApi.clearStories();
 	}
 }

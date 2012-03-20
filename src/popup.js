@@ -3,18 +3,23 @@ var pivotal = {
 	projects: [],
 	filter: '',
 	refresh: function() {
-		pivotalApi.clearEverything()
+		pivotalApi.clearEverything();
 		pivotal.projects([]);
 		pivotalApi.loadUser(userLoaded);
 	},
+	search: function(){
+		Enumerable.From(pivotal.projects()).ForEach(loadStories);
+	},
+	refreshSearch: function(){
+		pivotalApi.clearStories();
+		pivotal.search();
+	}
 }
 $(function() {
 	pivotal = ko.mapping.fromJS(pivotal);
 	ko.applyBindings(pivotal);
 	pivotalApi.loadUser(userLoaded);
-	pivotal.filter.subscribe(function(){
-		Enumerable.From(pivotal.projects()).ForEach(loadStories);
-	});
+	pivotal.filter.subscribe(pivotal.search);
 })
 
 function userLoaded() {
