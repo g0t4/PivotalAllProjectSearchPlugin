@@ -1,4 +1,5 @@
 var pivotalApi = {
+	amplifyKeyPrefix: "B29BA696-71B6-45DA-AB53-E0787FF93F2D",
 	mappingDecoder: function(mapper) {
 		return function(data, status, xhr, success, error) {
 			if (status === "success") {
@@ -25,14 +26,14 @@ var pivotalApi = {
 		}
 	},
 	loadUser: function(success, failure) {
-		// todo need a unique resource identifier
-		amplify.request.define("user", "ajax", {
+		var resourceId = pivotalApi.amplifyKeyPrefix + "user"
+		amplify.request.define(resourceId, "ajax", {
 			url: 'https://www.pivotaltracker.com/profile',
 			cache: 'persist',
 			decoder: pivotalApi.mappingDecoder(pivotalApi.userExtractor)
 		});
 		amplify.request({
-			resourceId: "user",
+			resourceId: resourceId,
 			success: function(data) {
 				pivotalApi.user = data;
 				success(data);
@@ -41,9 +42,11 @@ var pivotalApi = {
 		});
 	},
 	loadProjects: function(success, failure) {
+		var resourceId = pivotalApi.amplifyKeyPrefix + "projects"
+		
 		amplify.request.decoders.xmlToJsonDecoder = pivotalApi.mappingDecoder($.xml2json);
 
-		amplify.request.define("projects", "ajax", {
+		amplify.request.define(resourceId, "ajax", {
 			headers: {
 				"X-TrackerToken": pivotalApi.user.apiToken
 			},
@@ -53,15 +56,17 @@ var pivotalApi = {
 		});
 
 		amplify.request({
-			resourceId: "projects",
-			success: function(data){
+			resourceId: resourceId,
+			success: function(data) {
 				success(data.project);
 			},
 			failure: failure
 		});
 	},
 	loadStories: function(projectId, filter, success, failure) {
-		amplify.request.define("stories", "ajax", {
+		var resourceId = pivotalApi.amplifyKeyPrefix + "stories"
+
+		amplify.request.define(resourceId, "ajax", {
 			headers: {
 				"X-TrackerToken": pivotalApi.user.apiToken
 			},
@@ -75,10 +80,10 @@ var pivotalApi = {
 		};
 
 		amplify.request({
-			resourceId: "stories",
+			resourceId: resourceId,
 			data: storyParameters,
-			success: function(data){
-				if(data.story === undefined){
+			success: function(data) {
+				if (data.story === undefined) {
 					success([]);
 					return;
 				}
@@ -89,7 +94,7 @@ var pivotalApi = {
 		});
 	},
 	clearRequestCache: function(resourceId) {
-		var prefix = "request-" + resourceId,
+		var prefix = "request-" + pivotalApi.amplifyKeyPrefix + resourceId,
 			length = prefix.length,
 			type = amplify.request.resources[resourceId]
 			$.each(amplify.store(), function(key) {
