@@ -4,9 +4,11 @@
 <script src="lib/knockout.mapping-latest.js"></script>
 <script src="lib/linq.min.js"></script>
 <script src="lib/jquery.xml2json.js"></script>
+<script src="pivotal.js"></script>
 <script src="popup.js"></script>
 <html>
-	<body style="width: 500px;">
+	<body style="width: 550px;">
+		<img src="refresh.png" data-bind="click: refresh"/>
 		<div data-bind='foreach: projects'>
 			<ul>
 				<li data-bind="visible: stories().length > 0">
