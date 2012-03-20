@@ -24,16 +24,60 @@ var pivotalApi = {
 			abbreviation: abbreviationMatches[1]
 		}
 	},
-	loadUser: function() {
+	loadUser: function(success, failure) {
+		// todo need a unique resource identifier
 		amplify.request.define("user", "ajax", {
 			url: 'https://www.pivotaltracker.com/profile',
 			cache: 'persist',
 			decoder: pivotalApi.mappingDecoder(pivotalApi.userExtractor)
 		});
-		amplify.request("user", function(data) {
-			pivotal.user = data
-			loadProjects();
-		})
+		amplify.request({
+			resourceId: "user",
+			success: function(data) {
+				pivotalApi.user = data;
+				success(data);
+			},
+			failure: failure
+		});
+	},
+	loadProjects: function(success, failure) {
+		amplify.request.decoders.xmlToJsonDecoder = pivotalApi.mappingDecoder($.xml2json);
+
+		amplify.request.define("projects", "ajax", {
+			headers: {
+				"X-TrackerToken": pivotalApi.user.apiToken
+			},
+			url: "https://www.pivotaltracker.com/services/v3/projects",
+			cache: 'persist',
+			decoder: 'xmlToJsonDecoder'
+		});
+
+		amplify.request({
+			resourceId: "projects",
+			success: success,
+			failure: failure
+		});
+	},
+	loadStories: function(projectId, success, failure) {
+		amplify.request.define("stories", "ajax", {
+			headers: {
+				"X-TrackerToken": pivotalApi.user.apiToken
+			},
+			url: 'https://www.pivotaltracker.com/services/v3/projects/{projectId}/stories?filter={filter}',
+			decoder: 'xmlToJsonDecoder'
+		});
+
+		var storyParameters = {
+			filter: 'mywork:' + pivotalApi.user.abbreviation,
+			projectId: projectId
+		};
+
+		amplify.request({
+			resourceId: "stories",
+			data: storyParameters,
+			success: success,
+			failure: failure
+		});
 	},
 	clearRequestCache: function(resourceId) {
 		var prefix = "request-" + resourceId,
