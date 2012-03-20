@@ -60,7 +60,7 @@ var pivotalApi = {
 			failure: failure
 		});
 	},
-	loadStories: function(projectId, success, failure) {
+	loadStories: function(projectId, filter, success, failure) {
 		amplify.request.define("stories", "ajax", {
 			headers: {
 				"X-TrackerToken": pivotalApi.user.apiToken
@@ -70,7 +70,7 @@ var pivotalApi = {
 		});
 
 		var storyParameters = {
-			filter: 'mywork:' + pivotalApi.user.abbreviation,
+			filter: filter,
 			projectId: projectId
 		};
 

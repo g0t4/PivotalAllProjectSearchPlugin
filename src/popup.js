@@ -1,20 +1,26 @@
 // todo we need refreshing
 var pivotal = {
 	projects: [],
+	filter: '',
 	refresh: function() {
 		pivotalApi.clearEverything()
 		pivotal.projects([]);
 		pivotalApi.loadUser(userLoaded);
-	}
+	},
 }
 $(function() {
 	pivotal = ko.mapping.fromJS(pivotal);
 	ko.applyBindings(pivotal);
 	pivotalApi.loadUser(userLoaded);
+	pivotal.filter.subscribe(function(){
+		Enumerable.From(pivotal.projects()).ForEach(loadStories);
+	});
 })
 
 function userLoaded() {
 	pivotalApi.loadProjects(projectsLoaded);
+	var filter = 'mywork:' + pivotalApi.user.abbreviation;
+	pivotal.filter(filter);
 }
 
 function projectsLoaded(projects) {
@@ -25,7 +31,12 @@ function loadProject(project) {
 	project.stories = [];
 	var observable = ko.mapping.fromJS(project)
 	pivotal.projects.push(observable);
-	pivotalApi.loadStories(project.id, storiesLoaded(observable));
+	loadStories(observable);
+}
+
+function loadStories(project){
+	project.stories([]);
+	pivotalApi.loadStories(project.id(), pivotal.filter(), storiesLoaded(project));
 }
 
 function storiesLoaded(project) {
