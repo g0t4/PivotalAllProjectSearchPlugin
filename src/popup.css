@@ -1,8 +1,96 @@
 {
-	font-family: sans-serif;
+	font-family: Arial, Verdana, sans-serif;
 	font-size: 10px;
 }
 
 a {
 	text-decoration: none;
+}
+
+img.storyTypeIcon{
+	height: 14px;
+	width: 14px;
+	border: none;
+}
+
+ul.project{
+	padding-left: 5px;
+}
+
+.project li{
+	list-style-type: none;
+}
+
+ul.stories{
+	padding-left: 10px;
+}
+
+.project_name{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.story_labels{
+	color: #063;
+	font-size: 10px;
+	font-family: arial, sans-serif;
+	font-weight: bold;
+}
+
+.story_name{
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 12px;
+	color: black;
+}
+
+.feature img.storyTypeIcon {
+	background-image: url("lib/pivotal/feature.png");
+}
+
+.chore img.storyTypeIcon {
+	background-image: url("lib/pivotal/chore.png");
+}
+
+.bug img.storyTypeIcon {
+	background-image: url("lib/pivotal/bug.png");
+}
+
+.release img.storyTypeIcon {
+	background-image: url("lib/pivotal/release.png");
+}
+
+.started,
+.finished,
+.delivered {
+	background-color: #F3F3D1;
+	border-bottom-color: #DBDBB0;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-collapse: separate;
+}
+
+.rejected,
+.unStarted {
+	background-color: #F4F4F4;
+	border-bottom-color: #DDD;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-collapse: separate;
+}
+
+.unscheduled {
+	background-color: #E4EFF7;
+	border-bottom-color: #DDD;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-collapse: separate;
+}
+
+.accepted {
+	background-color: #DAEBCF;
+	border-bottom-color: #C3D5B4;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-collapse: separate;
 }

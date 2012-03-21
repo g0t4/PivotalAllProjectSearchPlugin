@@ -16,18 +16,25 @@
 		<img src="search.png" data-bind="click: search"/>
 		<img src="refresh.png" data-bind="click: refreshSearch"/>
 		<div data-bind='foreach: projects'>
-			<ul>
+			<ul class="project">
 				<li data-bind="visible: stories().length > 0">
-					<span data-bind="text: name"></span>
-					<div data-bind='foreach: stories'>
-						<ul>
-							<li>
+					<span class="project_name" data-bind="text: name"></span>
+					<ul class="stories">
+						<div data-bind='foreach: stories'>
+							<li class="story" data-bind='css: { feature: isFeature , release: isRelease , bug: isBug , chore: isChore, unstarted: isUnstarted, started: isStarted, delivered: isDelivered, accepted: isAccepted, rejected: isRejected, unscheduled: isUnscheduled, finished: isFinished }'>
 								<a data-bind="attr: { href: url}" target="_blank">
-									<span data-bind="text: name"></span>
+									<img class="storyTypeIcon"></img>
+									<span class="story_labels">
+										<span data-bind="text: labels"></span>
+									</span>
+									<span class="story_name">
+										<span data-bind="text: name"></span>
+										(<span data-bind="text: owned_by"></span>)
+									</span>
 								</a>
 							</li>
-						</ul>
-					</div>
+						</div>
+					</ul>
 				</li>
 			</ul>
 		</div>
