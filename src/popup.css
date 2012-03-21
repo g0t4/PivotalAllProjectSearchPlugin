@@ -13,15 +13,11 @@ img.storyTypeIcon{
 	border: none;
 }
 
-ul.project{
+.project{
 	padding-left: 5px;
 }
 
-.project li{
-	list-style-type: none;
-}
-
-ul.stories{
+.stories{
 	padding-left: 10px;
 }
 
@@ -38,7 +34,7 @@ ul.stories{
 	font-weight: bold;
 }
 
-.story_name{
+.story_name span{
 	font-family: Arial, Verdana, sans-serif;
 	font-size: 12px;
 	color: black;
@@ -93,4 +89,102 @@ ul.stories{
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
 	border-collapse: separate;
+}
+
+.story{
+	border-left-color: black;
+	border-right-color: black;
+	border-top-color: white;
+	border-top-style: solid;
+	border-top-width: 1px;
+	min-height: 23px;
+}
+.storyPreviewButtons{
+}
+.storyPreviewButtons a{
+	border-bottom-color: #EEE;
+	border-collapse: separate;
+	border-left-color: #EEE;
+	border-right-color: #EEE;
+	border-top-color: #EEE;
+	font-size: 11px;
+	font-weight: bold;
+	height: 22px;
+	margin-bottom: 0px;
+	margin-left: 1px;
+	margin-right: 0px;
+	margin-top: 0px;
+	width: 49px;
+	display: inline-block;
+	text-align: center;
+	vertical-align: bottom;
+	font-family: Arial, Verdana, sans-serif;
+	overflow-y: visible;
+	cursor: pointer;
+	float: none;
+	line-height: 23px;
+}
+
+.accept {
+	background-image: url(lib/pivotal/accept.png);
+	color: #EEE;
+}
+
+.accept:hover{
+	background-image: url(lib/pivotal/accept_hover.png);
+	color: #EEE;
+}
+
+.reject {
+	background-image: url(lib/pivotal/reject.png);
+	color: #EEE;
+}
+
+.reject:hover{
+	background-image: url(lib/pivotal/reject_hover.png);
+	color: #EEE;
+}
+
+.finish {
+	background-image: url(lib/pivotal/finish.png);
+	color: #EEE;
+}
+
+.finish:hover{
+	background-image: url(lib/pivotal/finish_hover.png);
+	color: #EEE;
+}
+
+.deliver {
+	background-image: url(lib/pivotal/deliver.png);
+	color: #EEE;
+}
+
+.deliver:hover{
+	background-image: url(lib/pivotal/deliver_hover.png);
+	color: #EEE;
+}
+
+.restart {
+	background-image: url(lib/pivotal/restart.png);
+	color: #222;
+	min-width: 56px;
+	padding-left: 10px;
+}
+
+.restart:hover{
+	background-image: url(lib/pivotal/restart_hover.png);
+	color: #222;
+	min-width: 56px;
+	padding-left: 10px;
+}
+
+.start {
+	background-image: url(lib/pivotal/start.png);
+	color: #222;
+}
+
+.start:hover{
+	background-image: url(lib/pivotal/start_hover.png);
+	color: #222;
 }

@@ -10,33 +10,43 @@
 	<link rel="stylesheet" type="text/css" href="popup.css" />
 </head>
 <html>
-	<body style="width: 550px;">
+	<body style="width: 600px;">
 		<img src="refresh.png" data-bind="click: refresh"/>
 		<input type="text" data-bind="value: filter"/>
 		<img src="search.png" data-bind="click: search"/>
 		<img src="refresh.png" data-bind="click: refreshSearch"/>
-		<div data-bind='foreach: projects'>
-			<ul class="project">
-				<li data-bind="visible: stories().length > 0">
+		<div data-bind='foreach: projects' style="width: 580px">
+			<div class="project">
+				<div data-bind="visible: stories().length > 0">
 					<span class="project_name" data-bind="text: name"></span>
-					<ul class="stories">
+					<div class="stories">
 						<div data-bind='foreach: stories'>
-							<li class="story" data-bind='css: { feature: isFeature , release: isRelease , bug: isBug , chore: isChore, unstarted: isUnstarted, started: isStarted, delivered: isDelivered, accepted: isAccepted, rejected: isRejected, unscheduled: isUnscheduled, finished: isFinished }'>
-								<a data-bind="attr: { href: url}" target="_blank">
+							<div class="story" data-bind='css: { feature: isFeature , release: isRelease , bug: isBug , chore: isChore, unstarted: isUnstarted, started: isStarted, delivered: isDelivered, accepted: isAccepted, rejected: isRejected, unscheduled: isUnscheduled, finished: isFinished }'>
+								<div class="storyPreviewButtons" style="float:right">
+									<a data-bind="click: accept, visible: isDelivered" class="accept">Accept</a>
+									<a data-bind="clik: reject, visible: isDelivered" class="reject">Reject</a>
+									<a data-bind="clik: start, visible: isUnstarted" class="start">Start</a>
+									<a data-bind="clik: restart, visible: isRejected" class="restart">Restart</a>
+									<a data-bind="clik: deliver, visible: isFinished" class="deliver">Deliver</a>
+									<a data-bind="clik: finish, visible: isStarted" class="finish">Finish</a>
+								</div>
+								<div class="icons" style="float:left">			
 									<img class="storyTypeIcon"></img>
+								</div>
+								<span class="story_name" style="display:block">
 									<span class="story_labels">
 										<span data-bind="text: labels"></span>
 									</span>
-									<span class="story_name">
+									<a data-bind="attr: { href: url}" target="_blank">
 										<span data-bind="text: name"></span>
-										(<span data-bind="text: owned_by"></span>)
-									</span>
-								</a>
-							</li>
+									</a>
+									(<span data-bind="text: owned_by"></span>)
+								</span>
+							</div>
 						</div>
-					</ul>
-				</li>
-			</ul>
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>

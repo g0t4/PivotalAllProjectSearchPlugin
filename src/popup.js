@@ -75,4 +75,22 @@ function Story(story) {
 	this.isAccepted = story.current_state === "accepted";
 	this.isRejected = story.current_state === "rejected";
 	this.isUnscheduled = story.current_state === "unscheduled";
+	this.accept = function(){
+
+	};
+	this.reject = function(){
+
+	};
+	this.finish = function(){
+
+	};
+	this.deliver = function(){
+
+	};
+	this.restart = function(){
+
+	};
+	this.start = function(){
+
+	};
 }
