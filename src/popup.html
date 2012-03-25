@@ -11,10 +11,24 @@
 </head>
 <html>
 	<body style="width: 600px;">
-		<img src="refresh.png" data-bind="click: refresh"/>
-		<input type="text" data-bind="value: filter"/>
-		<img src="search.png" data-bind="click: search"/>
-		<img src="refresh.png" data-bind="click: refreshSearch"/>
+		<div class="header">
+			<table cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<img src="refresh.png" class="refreshAll" data-bind="click: refresh" title="Refresh all data"/>
+					</td>
+					<td>
+						<input type="text" class="search" data-bind="value: filter"/>
+					</td>
+					<td>
+						<img src="search.png" class="search" data-bind="click: search" title="Search stories with caching"/>
+					</td>
+					<td>
+						<img src="refresh.png" class="refreshSearch" data-bind="click: refreshSearch" title="Refresh stories cache and search"/>
+					</td>
+				</tr>
+			</table>
+		</div>
 		<div data-bind='foreach: projects' style="width: 580px">
 			<div class="project">
 				<div data-bind="visible: stories().length > 0">
@@ -39,7 +53,7 @@
 								<div class="icons" style="float:left">			
 									<div class="storyTypeIcon"></div>
 								</div>
-								<span class="story_name" style="display:block">
+								<span class="story_name" style="display:block" data-bind="attr: { title: tooltip }">
 									<span class="story_labels">
 										<span data-bind="text: labels"></span>
 									</span>

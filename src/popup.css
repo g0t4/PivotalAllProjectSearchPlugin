@@ -7,6 +7,21 @@ a {
 	text-decoration: none;
 }
 
+input.search{
+	width: 300px;
+}
+
+img.refreshAll,
+img.refreshSearch{
+	height: 24px;
+	width: 24px;
+}
+
+img.search{
+	width: 24px;
+	height: 16px;
+}
+
 div.icons{
 	margin: 5px 5px 0px 5px;
 }

@@ -86,6 +86,7 @@ function Story(story) {
 	this.isRejected = story.current_state === "rejected";
 	this.isUnscheduled = story.current_state === "unscheduled";
 	this.projectId = story.project_id;
+	this.tooltip = JSON.stringify(story, null, '\t');
 	var setStoryState = function(state) {
 			var success = function() {
 					pivotal.refreshStory(self);
