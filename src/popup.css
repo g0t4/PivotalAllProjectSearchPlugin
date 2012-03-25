@@ -7,10 +7,13 @@ a {
 	text-decoration: none;
 }
 
-img.storyTypeIcon{
+div.icons{
+	margin: 5px 5px 0px 5px;
+}
+
+div.storyTypeIcon{
 	height: 14px;
 	width: 14px;
-	border: none;
 }
 
 .project{
@@ -40,19 +43,19 @@ img.storyTypeIcon{
 	color: black;
 }
 
-.feature img.storyTypeIcon {
+.feature div.storyTypeIcon {
 	background-image: url("lib/pivotal/feature.png");
 }
 
-.chore img.storyTypeIcon {
+.chore div.storyTypeIcon {
 	background-image: url("lib/pivotal/chore.png");
 }
 
-.bug img.storyTypeIcon {
+.bug div.storyTypeIcon {
 	background-image: url("lib/pivotal/bug.png");
 }
 
-.release img.storyTypeIcon {
+.release div.storyTypeIcon {
 	background-image: url("lib/pivotal/release.png");
 }
 
