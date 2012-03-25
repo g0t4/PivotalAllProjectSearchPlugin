@@ -26,9 +26,25 @@
 					<td>
 						<img src="refresh.png" class="refreshSearch" data-bind="click: refreshSearch" title="Refresh stories cache and search"/>
 					</td>
+					<td>
+						<img src="gear.gif" class="options" data-bind="click: options.toggleOptions" title="set options" />
+					</td>
 				</tr>
 			</table>
 		</div>
+		<fieldset data-bind="visible: options.showOptions" style="width: 400px">
+			<legend>Options</legend>
+			<div>
+					Api Token 
+					<input type="text" data-bind="value: options.apiToken" /> 
+					<button data-bind="click: options.setApiToken">Set</button>
+			</div>
+			<div>
+					User Abbreviation
+					<input type="text" data-bind="value: options.abbreviation" /> 
+					<button data-bind="click: options.setAbbreviation">Set</button>
+			</div>
+		</fieldset>
 		<div data-bind='foreach: projects' style="width: 580px">
 			<div class="project">
 				<div data-bind="visible: stories().length > 0">

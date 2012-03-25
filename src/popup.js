@@ -23,6 +23,29 @@ var pivotal = {
 			return p.id() == projectId
 		});
 		loadStories(project);
+	},
+	options: {
+		showOptions: false,
+		toggleOptions: function(){
+			pivotal.options.showOptions(!pivotal.options.showOptions());			
+			pivotalApi.user = pivotalApi.user || {};
+			pivotal.options.apiToken(pivotalApi.user.apiToken);
+			pivotal.options.abbreviation(pivotalApi.user.abbreviation);
+		},
+		apiToken: '',
+		setApiToken: function() {
+			var user = pivotalApi.user || {};
+			user.apiToken = pivotal.options.apiToken();
+			pivotalApi.setUser(user)
+			pivotal.refresh();
+		},
+		abbreviation: '',
+		setAbbreviation: function() {
+			var user = pivotalApi.user || {};
+			user.abbreviation = pivotal.options.abbreviation();
+			pivotalApi.setUser(user)
+			pivotal.refresh();
+		}
 	}
 }
 $(function() {

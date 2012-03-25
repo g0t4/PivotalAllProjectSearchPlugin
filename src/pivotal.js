@@ -25,19 +25,29 @@ var pivotalApi = {
 			abbreviation: abbreviationMatches[1]
 		}
 	},
+	setUser: function(user) {
+		var resourceId = pivotalApi.amplifyKeyPrefix + "user"
+		amplify.store(resourceId, user);
+	},
 	loadUser: function(success, failure) {
 		var resourceId = pivotalApi.amplifyKeyPrefix + "user"
+		var onSuccess = function(user){
+			pivotalApi.user = user;
+			amplify.store(resourceId, user);
+			success(user);
+		}
+		var saved = amplify.store(resourceId);
+		if(saved){
+			onSuccess(saved)
+			return;
+		}
 		amplify.request.define(resourceId, "ajax", {
 			url: 'https://www.pivotaltracker.com/profile',
-			cache: 'persist',
 			decoder: pivotalApi.mappingDecoder(pivotalApi.userExtractor)
 		});
 		amplify.request({
 			resourceId: resourceId,
-			success: function(data) {
-				pivotalApi.user = data;
-				success(data);
-			},
+			success: onSuccess,
 			failure: failure
 		});
 	},
@@ -128,13 +138,13 @@ var pivotalApi = {
 		});
 	},
 	clearUser: function() {
-		pivotalApi.clearRequestCache('user');
+		pivotalApi.setUser(null);
 	},
 	clearProjects: function() {
 		pivotalApi.clearRequestCache('projects');
 	},
 	clearStories: function() {
-		pivotalApi.clearRequestCache('stories');
+		pivotalApi.clearRequestCache('stories');	
 	},
 	clearEverything: function() {
 		pivotalApi.clearUser();
