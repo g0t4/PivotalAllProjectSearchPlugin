@@ -113,4 +113,10 @@ function Story(story) {
 	this.restart = function() {
 		setStoryState('started');
 	};
+	this.unFinish = function() {
+		setStoryState('started');
+	};
+	this.unStart = function() {
+		setStoryState('unstarted');
+	};
 }

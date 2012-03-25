@@ -179,12 +179,17 @@ img.storyTypeIcon{
 	padding-left: 10px;
 }
 
-.start {
+.start, 
+.unFinish,
+.unStart {
 	background-image: url(lib/pivotal/start.png);
 	color: #222;
 }
 
-.start:hover{
+.start:hover,
+.unFinish:hover,
+.unStart:hover {
 	background-image: url(lib/pivotal/start_hover.png);
 	color: #222;
 }
+

@@ -25,10 +25,16 @@
 								<div class="storyPreviewButtons" style="float:right">
 									<a data-bind="click: accept, visible: isDelivered" class="accept">Accept</a>
 									<a data-bind="click: reject, visible: isDelivered" class="reject">Reject</a>
+
 									<a data-bind="click: start, visible: isUnstarted" class="start">Start</a>
+
 									<a data-bind="click: restart, visible: isRejected" class="restart">Restart</a>
+
 									<a data-bind="click: deliver, visible: isFinished" class="deliver">Deliver</a>
+									<a data-bind="click: unFinish, visible: isFinished" class="unFinish">UnFinish</a>
+
 									<a data-bind="click: finish, visible: isStarted" class="finish">Finish</a>
+									<a data-bind="click: unStart, visible: isStarted" class="unStart">UnStart</a>
 								</div>
 								<div class="icons" style="float:left">			
 									<img class="storyTypeIcon"></img>
