@@ -1,9 +1,9 @@
 {
-  "name": "My Pivotal Stories",
+  "name": "Pivotal Tracker All Projects Search",
   "version": "1.0",
-  "description": "Show my stories across projects",
+  "description": "Search all stories across projects, defaults to current user",
   "permissions": [
-    "https://*/"
+    "https://www.pivotaltracker.com/"
   ],  
   "browser_action": {
     "default_icon": "icon.png",
