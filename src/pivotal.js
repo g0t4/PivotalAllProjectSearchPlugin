@@ -43,7 +43,7 @@ var pivotalApi = {
 	},
 	loadProjects: function(success, failure) {
 		var resourceId = pivotalApi.amplifyKeyPrefix + "projects"
-		
+
 		amplify.request.decoders.xmlToJsonDecoder = pivotalApi.mappingDecoder($.xml2json);
 
 		amplify.request.define(resourceId, "ajax", {
@@ -73,7 +73,7 @@ var pivotalApi = {
 			url: 'https://www.pivotaltracker.com/services/v3/projects/{projectId}/stories?filter={filter}',
 			cache: {
 				type: 'persist',
-				expires: 5*60*1000
+				expires: 5 * 60 * 1000
 			},
 			decoder: 'xmlToJsonDecoder'
 		});
@@ -107,13 +107,33 @@ var pivotalApi = {
 				}
 			})
 	},
+	setStoryState: function(storyId, projectId, current_state, success, failure) {
+		amplify.request.define("setStoryState", "ajax", {
+			headers: {
+				"X-TrackerToken": pivotalApi.user.apiToken
+			},
+			type: "PUT",
+			url: 'https://www.pivotaltracker.com/services/v3/projects/{projectId}/stories/{storyId}?story[current_state]={current_state}',
+		});
+
+		amplify.request({
+			resourceId: "setStoryState",
+			data: {
+				projectId: projectId,
+				storyId: storyId,
+				current_state: current_state
+			},
+			success: success,
+			failure: failure
+		});
+	},
 	clearUser: function() {
 		pivotalApi.clearRequestCache('user');
 	},
 	clearProjects: function() {
 		pivotalApi.clearRequestCache('projects');
 	},
-	clearStories: function(){
+	clearStories: function() {
 		pivotalApi.clearRequestCache('stories');
 	},
 	clearEverything: function() {

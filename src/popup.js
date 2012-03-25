@@ -4,7 +4,7 @@ var pivotal = {
 	filter: '',
 	refresh: function() {
 		pivotalApi.clearEverything();
-		pivotal.projects([]);
+		pivotal.projects.removeAll();
 		pivotalApi.loadUser(userLoaded);
 	},
 	search: function() {
@@ -13,6 +13,16 @@ var pivotal = {
 	refreshSearch: function() {
 		pivotalApi.clearStories();
 		pivotal.search();
+	},
+	refreshStory: function(story) {
+		pivotal.refreshProject(story.projectId);
+	},
+	refreshProject: function(projectId) {
+		pivotalApi.clearStories();
+		var project = Enumerable.From(pivotal.projects()).Single(function(p) {
+			return p.id() == projectId
+		});
+		loadStories(project);
 	}
 }
 $(function() {
@@ -40,14 +50,13 @@ function loadProject(project) {
 }
 
 function loadStories(project) {
-	project.stories([]);
+	project.stories.removeAll();
 	pivotalApi.loadStories(project.id(), pivotal.filter(), storiesLoaded(project));
 }
 
 function storiesLoaded(project) {
 	return function(stories) {
 		Enumerable.From(stories).Select(function(s) {
-			console.log(s);
 			return new Story(s);
 		}).ForEach(function(s) {
 			project.stories.push(s)
@@ -56,6 +65,7 @@ function storiesLoaded(project) {
 }
 
 function Story(story) {
+	var self = this;
 	this.id = story.id;
 	this.url = story.url;
 	this.name = story.name;
@@ -75,22 +85,32 @@ function Story(story) {
 	this.isAccepted = story.current_state === "accepted";
 	this.isRejected = story.current_state === "rejected";
 	this.isUnscheduled = story.current_state === "unscheduled";
-	this.accept = function(){
-
+	this.projectId = story.project_id;
+	var setStoryState = function(state) {
+			var success = function() {
+					pivotal.refreshStory(self);
+				};
+			var failure = function(error) {
+					console.log(error);
+				};
+			pivotalApi.setStoryState(self.id, self.projectId, state, success, failure);
+		}
+	this.accept = function() {
+		setStoryState('accepted');
 	};
-	this.reject = function(){
-
+	this.reject = function() {
+		setStoryState('rejected');
 	};
-	this.finish = function(){
-
+	this.finish = function() {
+		setStoryState('finished');
 	};
-	this.deliver = function(){
-
+	this.deliver = function() {
+		setStoryState('delivered');
 	};
-	this.restart = function(){
-
+	this.start = function() {
+		setStoryState('started');
 	};
-	this.start = function(){
-
+	this.restart = function() {
+		setStoryState('started');
 	};
 }

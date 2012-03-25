@@ -24,11 +24,11 @@
 							<div class="story" data-bind='css: { feature: isFeature , release: isRelease , bug: isBug , chore: isChore, unstarted: isUnstarted, started: isStarted, delivered: isDelivered, accepted: isAccepted, rejected: isRejected, unscheduled: isUnscheduled, finished: isFinished }'>
 								<div class="storyPreviewButtons" style="float:right">
 									<a data-bind="click: accept, visible: isDelivered" class="accept">Accept</a>
-									<a data-bind="clik: reject, visible: isDelivered" class="reject">Reject</a>
-									<a data-bind="clik: start, visible: isUnstarted" class="start">Start</a>
-									<a data-bind="clik: restart, visible: isRejected" class="restart">Restart</a>
-									<a data-bind="clik: deliver, visible: isFinished" class="deliver">Deliver</a>
-									<a data-bind="clik: finish, visible: isStarted" class="finish">Finish</a>
+									<a data-bind="click: reject, visible: isDelivered" class="reject">Reject</a>
+									<a data-bind="click: start, visible: isUnstarted" class="start">Start</a>
+									<a data-bind="click: restart, visible: isRejected" class="restart">Restart</a>
+									<a data-bind="click: deliver, visible: isFinished" class="deliver">Deliver</a>
+									<a data-bind="click: finish, visible: isStarted" class="finish">Finish</a>
 								</div>
 								<div class="icons" style="float:left">			
 									<img class="storyTypeIcon"></img>
