@@ -2,11 +2,12 @@
   "name": "Pivotal Tracker All Projects Search",
   "version": "1.0",
   "description": "Search all stories across projects, defaults to current user",
-  "permissions": [
-    "https://www.pivotaltracker.com/"
-  ],  
+  "permissions": ["https://www.pivotaltracker.com/"],
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "icons/browser_action.png",
     "popup": "popup.html"
+  },
+  "icons": {
+    "128": "icons/icon128.png"
   }
 }
