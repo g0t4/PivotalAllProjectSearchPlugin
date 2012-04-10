@@ -12,7 +12,7 @@ var pivotalApi = {
 		};
 	},
 	userExtractor: function(data) {
-		var apiTokenMatches = data.match(/<td\ class=\"text_column\">([0-9,a-f]*)<\/td>/)
+		var apiTokenMatches = data.match(/<td\ class=\"text_column\">([0-9,a-f]+)<\/td>/)
 		if (apiTokenMatches.length < 2) {
 			throw 'Cannot get api token'
 		}
