@@ -35,14 +35,19 @@
 		<fieldset data-bind="visible: options.showOptions" style="width: 400px">
 			<legend>Options</legend>
 			<div>
-					Api Token 
-					<input type="text" data-bind="value: options.apiToken" /> 
-					<button data-bind="click: options.setApiToken">Set</button>
+				Api Token 
+				<input type="text" data-bind="value: options.apiToken" /> 
+				<button data-bind="click: options.setApiToken">Set</button>
 			</div>
 			<div>
-					User Abbreviation
-					<input type="text" data-bind="value: options.abbreviation" /> 
-					<button data-bind="click: options.setAbbreviation">Set</button>
+				User Abbreviation
+				<input type="text" data-bind="value: options.abbreviation" /> 
+				<button data-bind="click: options.setAbbreviation">Set</button>
+			</div>
+			<div>
+				Default Search
+				<input type="text" data-bind="value: options.defaultSearch" /> 
+				<button data-bind="click: options.setDefaultSearch">Set</button>		
 			</div>
 		</fieldset>
 		<div data-bind='foreach: projects' style="width: 580px">

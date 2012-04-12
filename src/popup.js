@@ -31,6 +31,7 @@ var pivotal = {
 			pivotalApi.user = pivotalApi.user || {};
 			pivotal.options.apiToken(pivotalApi.user.apiToken);
 			pivotal.options.abbreviation(pivotalApi.user.abbreviation);
+			pivotal.options.defaultSearch(amplify.store('defaultSearch'));
 		},
 		apiToken: '',
 		setApiToken: function() {
@@ -44,8 +45,19 @@ var pivotal = {
 			var user = pivotalApi.user || {};
 			user.abbreviation = pivotal.options.abbreviation();
 			pivotalApi.setUser(user)
-			pivotal.refresh();
-		}
+			
+		},
+		defaultSearch: '',
+		setDefaultSearch: function(){
+			var defaultSearch = pivotal.options.defaultSearch();
+			if (defaultSearch === '') {
+				amplify.store('defaultSearch', null);
+			}
+			else{
+				amplify.store('defaultSearch', defaultSearch);			
+				pivotal.filter(defaultSearch);
+			}
+		},
 	}
 }
 $(function() {
@@ -57,8 +69,8 @@ $(function() {
 
 function userLoaded() {
 	pivotalApi.loadProjects(projectsLoaded);
-	var filter = 'mywork:' + pivotalApi.user.abbreviation;
-	pivotal.filter(filter);
+	var search = amplify.store('defaultSearch') || 'mywork:' + pivotalApi.user.abbreviation;
+	pivotal.filter(search);
 }
 
 function projectsLoaded(projects) {
