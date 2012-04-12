@@ -38,26 +38,24 @@ var pivotal = {
 			var user = pivotalApi.user || {};
 			user.apiToken = pivotal.options.apiToken();
 			pivotalApi.setUser(user)
-			pivotal.refresh();
+			window.location.reload();
 		},
 		abbreviation: '',
 		setAbbreviation: function() {
 			var user = pivotalApi.user || {};
 			user.abbreviation = pivotal.options.abbreviation();
 			pivotalApi.setUser(user)
-			
+			window.location.reload();			
 		},
 		defaultSearch: '',
 		setDefaultSearch: function(){
 			var defaultSearch = pivotal.options.defaultSearch();
 			if (defaultSearch === '') {
-				amplify.store('defaultSearch', null);
+				defaultSearch = null;
 			}
-			else{
-				amplify.store('defaultSearch', defaultSearch);			
-				pivotal.filter(defaultSearch);
-			}
-		},
+			amplify.store('defaultSearch', defaultSearch);			
+			window.location.reload();
+		}
 	}
 }
 $(function() {
