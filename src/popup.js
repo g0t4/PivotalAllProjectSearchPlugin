@@ -50,12 +50,26 @@ var pivotal = {
 		defaultSearch: '',
 		setDefaultSearch: function(){
 			var defaultSearch = pivotal.options.defaultSearch();
+			pivotal.options.setDefaultSearchTo(defaultSearch);
+		},
+		clearDefaultSearch: function(){
+			pivotal.options.setDefaultSearchTo(null);
+		},
+		setDefaultSearchToApprovals: function(){
+			var approvals = 'requester:' + pivotalApi.user.abbreviation + ' state:finished,delivered';
+			pivotal.options.setDefaultSearchTo(approvals);
+		},
+		setDefaultSearchToWork: function(){
+			var work = 'mywork:' + pivotalApi.user.abbreviation + ' state:unscheduled,unstarted,started,rejected';
+			pivotal.options.setDefaultSearchTo(work);
+		},
+		setDefaultSearchTo: function(defaultSearch){
 			if (defaultSearch === '') {
 				defaultSearch = null;
-			}
+			};
 			amplify.store('defaultSearch', defaultSearch);			
 			window.location.reload();
-		}
+		},
 	}
 }
 $(function() {

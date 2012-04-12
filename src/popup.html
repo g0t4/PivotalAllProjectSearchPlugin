@@ -30,6 +30,13 @@
 						<img src="gear.gif" class="options" data-bind="click: options.toggleOptions" title="set options" />
 					</td>
 				</tr>
+				<tr>
+					<td colspan=5>
+						<button data-bind="click: options.setDefaultSearchToApprovals" title="Search for tasks that I requested that are finished or delivered">Approvals</button>					
+						<button data-bind="click: options.setDefaultSearchToWork" title="Search for tasks that I am working on but not ones that I have finished or delivered">Work</button>
+						<button data-bind="click: options.clearDefaultSearch" title="Set search to my work filter">My Work</button>
+					</td>
+				</tr>
 			</table>
 		</div>
 		<fieldset data-bind="visible: options.showOptions" style="width: 400px">
@@ -46,8 +53,8 @@
 			</div>
 			<div>
 				Default Search
-				<input type="text" data-bind="value: options.defaultSearch" /> 
-				<button data-bind="click: options.setDefaultSearch">Set</button>		
+				<input type="text" data-bind="value: options.defaultSearch" />
+				<button data-bind="click: options.setDefaultSearch">Set</button>
 			</div>
 		</fieldset>
 		<div data-bind='foreach: projects' style="width: 580px">
