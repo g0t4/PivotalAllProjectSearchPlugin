@@ -1,6 +1,6 @@
 {
   "name": "Pivotal Tracker All Projects Search",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Search all stories across projects, defaults to current user",
   "permissions": ["https://www.pivotaltracker.com/"],
   "browser_action": {

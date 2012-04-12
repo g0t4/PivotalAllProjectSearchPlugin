@@ -37,14 +37,14 @@ var pivotal = {
 		setApiToken: function() {
 			var user = pivotalApi.user || {};
 			user.apiToken = pivotal.options.apiToken();
-			pivotalApi.setUser(user)
+			pivotalApi.setUser(user);
 			window.location.reload();
 		},
 		abbreviation: '',
 		setAbbreviation: function() {
 			var user = pivotalApi.user || {};
 			user.abbreviation = pivotal.options.abbreviation();
-			pivotalApi.setUser(user)
+			pivotalApi.setUser(user);
 			window.location.reload();			
 		},
 		defaultSearch: '',
